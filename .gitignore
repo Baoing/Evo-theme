@@ -57,3 +57,5 @@ temp/
 # Shopify theme files (keep original compiled files as backup)
 # assets/theme.js.backup
 # assets/vendor.js.backup
+
+theme.*.map
