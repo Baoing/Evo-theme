@@ -17,13 +17,13 @@
     {% else %}
       height: {{ section.settings.fixed_height }}px;
     {% endif %}
-    
+
     {% if section.settings.bg_type == 'gradient' %}
       background: linear-gradient({{ section.settings.gradient_direction }}deg, {{ section.settings.bg_color_1 }} 0%, {{ section.settings.bg_color_2 }} 100%);
     {% else %}
       background: {{ section.settings.bg_color }};
     {% endif %}
-    
+
     overflow: hidden;
   }
 
@@ -213,23 +213,23 @@
   }
 </style>
 
-<section class="wave-section-{{ section.id }}" 
-  data-section-id="{{ section.id }}" 
+<section class="wave-section-{{ section.id }}"
+  data-section-id="{{ section.id }}"
   data-section-type="wave-animation">
 
   <!-- 波浪层 -->
   {% if section.settings.show_wave1 %}
     <div class="wave wave1"></div>
   {% endif %}
-  
+
   {% if section.settings.show_wave2 %}
     <div class="wave wave2"></div>
   {% endif %}
-  
+
   {% if section.settings.show_wave3 %}
     <div class="wave wave3"></div>
   {% endif %}
-  
+
   {% if section.settings.show_wave4 %}
     <div class="wave wave4"></div>
   {% endif %}
@@ -241,7 +241,7 @@
         {% if section.settings.title != blank %}
           <h2 class="wave-title">{{ section.settings.title }}</h2>
         {% endif %}
-        
+
         {% if section.settings.subtitle != blank %}
           <p class="wave-subtitle">{{ section.settings.subtitle }}</p>
         {% endif %}
@@ -325,7 +325,7 @@
       "step": 50,
       "unit": "px",
       "label": "固定高度",
-      "default": 400
+      "default": 200
     },
     {
       "type": "range",
@@ -335,7 +335,7 @@
       "step": 50,
       "unit": "px",
       "label": "最小高度（自动高度时）",
-      "default": 300
+      "default": 200
     },
     {
       "type": "range",
@@ -365,7 +365,7 @@
       "type": "color",
       "id": "bg_color",
       "label": "背景颜色",
-      "default": "#3586ff"
+      "default": "#FFFFFF"
     },
     {
       "type": "color",
@@ -413,7 +413,7 @@
       "type": "color",
       "id": "wave1_color",
       "label": "波浪层1颜色",
-      "default": "#ffffff"
+      "default": "#3586ff"
     },
     {
       "type": "checkbox",
@@ -445,7 +445,7 @@
       "type": "color",
       "id": "wave2_color",
       "label": "波浪层2颜色",
-      "default": "#ffffff"
+      "default": "#3586ff"
     },
     {
       "type": "checkbox",
@@ -477,7 +477,7 @@
       "type": "color",
       "id": "wave3_color",
       "label": "波浪层3颜色",
-      "default": "#ffffff"
+      "default": "#3586ff"
     },
     {
       "type": "checkbox",
@@ -509,7 +509,7 @@
       "type": "color",
       "id": "wave4_color",
       "label": "波浪层4颜色",
-      "default": "#ffffff"
+      "default": "#3586ff"
     },
     {
       "type": "header",
@@ -535,7 +535,7 @@
       "type": "color",
       "id": "text_color",
       "label": "文字颜色",
-      "default": "#ffffff"
+      "default": "#333333"
     },
     {
       "type": "range",
@@ -579,8 +579,8 @@
         "animation_speed": 15,
         "wave_height": 100,
         "height_type": "fixed",
-        "fixed_height": 400,
-        "bg_color": "#3586ff",
+        "fixed_height": 200,
+        "bg_color": "#ffffff",
         "show_wave1": true,
         "show_wave2": true,
         "show_wave3": true,
