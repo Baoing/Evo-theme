@@ -1,0 +1,72 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "linklist-1": {
+          "type": "linklist",
+          "settings": {
+            "linklist": "main-menu",
+            "title": "",
+            "accordion_default": ""
+          }
+        },
+        "text-3": {
+          "type": "text",
+          "settings": {
+            "title": "Our Promise",
+            "text": "<p>Experience the perfect blend of comfort and style with our premium products. Meticulously crafted with attention to detail, each item is designed to enhance your daily life. Discover quality that speaks for itself and elevate your experience with our thoughtfully designed collection.</p>",
+            "text_size": 4,
+            "accordion_default": ""
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "show_image": true,
+            "wh_ratio": 2,
+            "newsletter_enable": true,
+            "recaptcha_enabled": false,
+            "kicker": "Newsletter",
+            "heading": "",
+            "richtext": "<p>Join to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
+            "text_size": 4,
+            "background_color": "#f7f7f7",
+            "text_color_value": "#222222"
+          }
+        }
+      },
+      "block_order": [
+        "linklist-1",
+        "text-3",
+        "newsletter"
+      ],
+      "settings": {
+        "menu_position": "left",
+        "logo_max_limit": 120,
+        "width": "wrapper--full",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "subfooter": {
+      "type": "subfooter",
+      "settings": {
+        "footer_secondary_linklist": "footer",
+        "footer_payment_enable": false,
+        "footer_social_enable": false,
+        "show_locale_selector": true,
+        "show_currency_selector": true,
+        "width": "wrapper--full",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer",
+    "subfooter"
+  ]
+}

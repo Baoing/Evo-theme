@@ -1,0 +1,593 @@
+<!-- /sections/wave-animation.liquid -->
+{%- comment -%}
+  水波纹动画Section - 基于背景图片的波浪动画效果
+{%- endcomment -%}
+
+<style>
+  .wave-section-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    {% if section.settings.height_type == 'full' %}
+      height: 100vh;
+      min-height: 400px;
+    {% elsif section.settings.height_type == 'auto' %}
+      height: auto;
+      min-height: {{ section.settings.min_height }}px;
+      padding: {{ section.settings.padding_y }}px 0;
+    {% else %}
+      height: {{ section.settings.fixed_height }}px;
+    {% endif %}
+    
+    {% if section.settings.bg_type == 'gradient' %}
+      background: linear-gradient({{ section.settings.gradient_direction }}deg, {{ section.settings.bg_color_1 }} 0%, {{ section.settings.bg_color_2 }} 100%);
+    {% else %}
+      background: {{ section.settings.bg_color }};
+    {% endif %}
+    
+    overflow: hidden;
+  }
+
+  .wave-section-{{ section.id }} .wave {
+    width: 100%;
+    height: {{ section.settings.wave_height }}px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-size: {{ section.settings.wave_width }}px {{ section.settings.wave_height }}px;
+    background-repeat: repeat-x;
+  }
+
+
+  /* 波浪层1 */
+  {% if section.settings.show_wave1 %}
+  .wave-section-{{ section.id }} .wave.wave1 {
+    animation: wave-animate1-{{ section.id }} {{ section.settings.animation_speed }}s linear infinite;
+    z-index: 1000;
+    opacity: {{ section.settings.wave1_opacity | divided_by: 100.0 }};
+    animation-delay: 0s;
+    bottom: 0;
+    {% assign wave1_color = section.settings.wave1_color %}
+    {% case section.settings.wave_style %}
+      {% when 'style1' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,50 Q450,0 900,50 T1800,50 V100 H0 Z' fill='%23{{ wave1_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style2' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,30 Q300,80 600,30 Q900,80 1200,30 Q1500,80 1800,30 V100 H0 Z' fill='%23{{ wave1_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style3' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,70 Q225,20 450,70 Q675,20 900,70 Q1125,20 1350,70 Q1575,20 1800,70 V100 H0 Z' fill='%23{{ wave1_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style4' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,40 Q150,10 300,40 Q450,70 600,40 Q750,10 900,40 Q1050,70 1200,40 Q1350,10 1500,40 Q1650,70 1800,40 V100 H0 Z' fill='%23{{ wave1_color | remove: '#' }}'/%3E%3C/svg%3E");
+    {% endcase %}
+  }
+  {% endif %}
+
+  /* 波浪层2 */
+  {% if section.settings.show_wave2 %}
+  .wave-section-{{ section.id }} .wave.wave2 {
+    animation: wave-animate2-{{ section.id }} {{ section.settings.animation_speed }}s linear infinite;
+    z-index: 999;
+    opacity: {{ section.settings.wave2_opacity | divided_by: 100.0 }};
+    animation-delay: -{{ section.settings.animation_speed | divided_by: 5 }}s;
+    bottom: {{ section.settings.wave2_offset }}px;
+    {% assign wave2_color = section.settings.wave2_color %}
+    {% case section.settings.wave_style %}
+      {% when 'style1' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,50 Q450,0 900,50 T1800,50 V100 H0 Z' fill='%23{{ wave2_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style2' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,30 Q300,80 600,30 Q900,80 1200,30 Q1500,80 1800,30 V100 H0 Z' fill='%23{{ wave2_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style3' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,70 Q225,20 450,70 Q675,20 900,70 Q1125,20 1350,70 Q1575,20 1800,70 V100 H0 Z' fill='%23{{ wave2_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style4' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,40 Q150,10 300,40 Q450,70 600,40 Q750,10 900,40 Q1050,70 1200,40 Q1350,10 1500,40 Q1650,70 1800,40 V100 H0 Z' fill='%23{{ wave2_color | remove: '#' }}'/%3E%3C/svg%3E");
+    {% endcase %}
+  }
+  {% endif %}
+
+  /* 波浪层3 */
+  {% if section.settings.show_wave3 %}
+  .wave-section-{{ section.id }} .wave.wave3 {
+    animation: wave-animate1-{{ section.id }} {{ section.settings.animation_speed | times: 0.67 }}s linear infinite;
+    z-index: 998;
+    opacity: {{ section.settings.wave3_opacity | divided_by: 100.0 }};
+    animation-delay: -{{ section.settings.animation_speed | divided_by: 2.14 }}s;
+    bottom: {{ section.settings.wave3_offset }}px;
+    {% assign wave3_color = section.settings.wave3_color %}
+    {% case section.settings.wave_style %}
+      {% when 'style1' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,50 Q450,0 900,50 T1800,50 V100 H0 Z' fill='%23{{ wave3_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style2' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,30 Q300,80 600,30 Q900,80 1200,30 Q1500,80 1800,30 V100 H0 Z' fill='%23{{ wave3_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style3' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,70 Q225,20 450,70 Q675,20 900,70 Q1125,20 1350,70 Q1575,20 1800,70 V100 H0 Z' fill='%23{{ wave3_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style4' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,40 Q150,10 300,40 Q450,70 600,40 Q750,10 900,40 Q1050,70 1200,40 Q1350,10 1500,40 Q1650,70 1800,40 V100 H0 Z' fill='%23{{ wave3_color | remove: '#' }}'/%3E%3C/svg%3E");
+    {% endcase %}
+  }
+  {% endif %}
+
+  /* 波浪层4 */
+  {% if section.settings.show_wave4 %}
+  .wave-section-{{ section.id }} .wave.wave4 {
+    animation: wave-animate2-{{ section.id }} {{ section.settings.animation_speed | times: 0.33 }}s linear infinite;
+    z-index: 997;
+    opacity: {{ section.settings.wave4_opacity | divided_by: 100.0 }};
+    animation-delay: -{{ section.settings.animation_speed | divided_by: 3 }}s;
+    bottom: {{ section.settings.wave4_offset }}px;
+    {% assign wave4_color = section.settings.wave4_color %}
+    {% case section.settings.wave_style %}
+      {% when 'style1' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,50 Q450,0 900,50 T1800,50 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style2' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,30 Q300,80 600,30 Q900,80 1200,30 Q1500,80 1800,30 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style3' %>
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,70 Q225,20 450,70 Q675,20 900,70 Q1125,20 1350,70 Q1575,20 1800,70 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
+      {% when 'style4' %}
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,40 Q150,10 300,40 Q450,70 600,40 Q750,10 900,40 Q1050,70 1200,40 Q1350,10 1500,40 Q1650,70 1800,40 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
+    {% endcase %}
+  }
+  {% endif %}
+
+  /* 动画关键帧 */
+  @keyframes wave-animate1-{{ section.id }} {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: {{ section.settings.wave_width }}px;
+    }
+  }
+
+  @keyframes wave-animate2-{{ section.id }} {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: -{{ section.settings.wave_width }}px;
+    }
+  }
+
+  /* 内容区域 */
+  .wave-section-{{ section.id }} .wave-content {
+    position: relative;
+    z-index: 1001;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .wave-section-{{ section.id }} .wave-content-inner {
+    text-align: center;
+    color: {{ section.settings.text_color }};
+    max-width: 800px;
+  }
+
+  .wave-section-{{ section.id }} .wave-title {
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: {{ section.settings.title_weight }};
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .wave-section-{{ section.id }} .wave-subtitle {
+    font-size: {{ section.settings.subtitle_size }}px;
+    opacity: 0.9;
+    line-height: 1.6;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .wave-section-{{ section.id }} {
+      {% if section.settings.height_type == 'full' %}
+        height: 70vh;
+        min-height: 300px;
+      {% elsif section.settings.height_type == 'fixed' %}
+        height: {{ section.settings.fixed_height | times: 0.7 }}px;
+      {% endif %}
+    }
+
+    .wave-section-{{ section.id }} .wave {
+      height: {{ section.settings.wave_height | times: 0.7 }}px;
+      background-size: {{ section.settings.wave_width | times: 0.7 }}px {{ section.settings.wave_height | times: 0.7 }}px;
+    }
+
+    .wave-section-{{ section.id }} .wave-title {
+      font-size: {{ section.settings.title_size | times: 0.8 }}px;
+    }
+
+    .wave-section-{{ section.id }} .wave-subtitle {
+      font-size: {{ section.settings.subtitle_size | times: 0.9 }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wave-section-{{ section.id }} .wave {
+      height: {{ section.settings.wave_height | times: 0.5 }}px;
+      background-size: {{ section.settings.wave_width | times: 0.5 }}px {{ section.settings.wave_height | times: 0.5 }}px;
+    }
+
+    .wave-section-{{ section.id }} .wave-title {
+      font-size: {{ section.settings.title_size | times: 0.7 }}px;
+    }
+  }
+</style>
+
+<section class="wave-section-{{ section.id }}" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="wave-animation">
+
+  <!-- 波浪层 -->
+  {% if section.settings.show_wave1 %}
+    <div class="wave wave1"></div>
+  {% endif %}
+  
+  {% if section.settings.show_wave2 %}
+    <div class="wave wave2"></div>
+  {% endif %}
+  
+  {% if section.settings.show_wave3 %}
+    <div class="wave wave3"></div>
+  {% endif %}
+  
+  {% if section.settings.show_wave4 %}
+    <div class="wave wave4"></div>
+  {% endif %}
+
+  <!-- 内容区域 -->
+  {% if section.settings.show_content %}
+    <div class="wave-content">
+      <div class="wave-content-inner">
+        {% if section.settings.title != blank %}
+          <h2 class="wave-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        
+        {% if section.settings.subtitle != blank %}
+          <p class="wave-subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+</section>
+
+{% schema %}
+{
+  "name": "水波纹动画",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "波浪样式设置"
+    },
+    {
+      "type": "select",
+      "id": "wave_style",
+      "label": "波浪样式",
+      "options": [
+        {"value": "style1", "label": "柔和波浪"},
+        {"value": "style2", "label": "起伏波浪"},
+        {"value": "style3", "label": "密集波浪"},
+        {"value": "style4", "label": "复杂波浪"}
+      ],
+      "default": "style1"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "min": 3,
+      "max": 20,
+      "step": 1,
+      "unit": "s",
+      "label": "动画速度（秒）",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "wave_height",
+      "min": 50,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "波浪高度",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "wave_width",
+      "min": 1200,
+      "max": 2400,
+      "step": 200,
+      "unit": "px",
+      "label": "波浪宽度",
+      "default": 1800
+    },
+    {
+      "type": "header",
+      "content": "区域高度设置"
+    },
+    {
+      "type": "select",
+      "id": "height_type",
+      "label": "高度类型",
+      "options": [
+        {"value": "fixed", "label": "固定高度"},
+        {"value": "full", "label": "全屏高度"},
+        {"value": "auto", "label": "自动高度"}
+      ],
+      "default": "fixed"
+    },
+    {
+      "type": "range",
+      "id": "fixed_height",
+      "min": 150,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "固定高度",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "min": 150,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "label": "最小高度（自动高度时）",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 40,
+      "max": 200,
+      "step": 20,
+      "unit": "px",
+      "label": "上下内边距（自动高度时）",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "背景设置"
+    },
+    {
+      "type": "select",
+      "id": "bg_type",
+      "label": "背景类型",
+      "options": [
+        {"value": "solid", "label": "纯色"},
+        {"value": "gradient", "label": "渐变"}
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "背景颜色",
+      "default": "#3586ff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "渐变起始色",
+      "default": "#3586ff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "渐变结束色",
+      "default": "#667eea"
+    },
+    {
+      "type": "range",
+      "id": "gradient_direction",
+      "min": 0,
+      "max": 360,
+      "step": 45,
+      "unit": "°",
+      "label": "渐变方向",
+      "default": 135
+    },
+    {
+      "type": "header",
+      "content": "波浪层控制"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wave1",
+      "label": "显示波浪层1",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "wave1_opacity",
+      "min": 10,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "波浪层1透明度",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "wave1_color",
+      "label": "波浪层1颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wave2",
+      "label": "显示波浪层2",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "wave2_opacity",
+      "min": 10,
+      "max": 100,
+      "step": 10,
+      "unit": "%",
+      "label": "波浪层2透明度",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "wave2_offset",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "波浪层2偏移",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "wave2_color",
+      "label": "波浪层2颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wave3",
+      "label": "显示波浪层3",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "wave3_opacity",
+      "min": 5,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "波浪层3透明度",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "wave3_offset",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "波浪层3偏移",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "wave3_color",
+      "label": "波浪层3颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wave4",
+      "label": "显示波浪层4",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "wave4_opacity",
+      "min": 5,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "波浪层4透明度",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "wave4_offset",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "波浪层4偏移",
+      "default": 25
+    },
+    {
+      "type": "color",
+      "id": "wave4_color",
+      "label": "波浪层4颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "内容设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content",
+      "label": "显示内容",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "副标题"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "文字颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 72,
+      "step": 4,
+      "unit": "px",
+      "label": "标题字号",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "副标题字号",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "标题字重",
+      "options": [
+        {"value": "300", "label": "细体"},
+        {"value": "400", "label": "正常"},
+        {"value": "500", "label": "中等"},
+        {"value": "600", "label": "半粗"},
+        {"value": "700", "label": "粗体"}
+      ],
+      "default": "700"
+    }
+  ],
+  "presets": [
+    {
+      "name": "水波纹动画",
+      "settings": {
+        "wave_style": "style1",
+        "animation_speed": 15,
+        "wave_height": 100,
+        "height_type": "fixed",
+        "fixed_height": 400,
+        "bg_color": "#3586ff",
+        "show_wave1": true,
+        "show_wave2": true,
+        "show_wave3": true,
+        "show_wave4": true,
+        "show_content": false
+      }
+    }
+  ]
+}
+{% endschema %}

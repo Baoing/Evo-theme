@@ -1,0 +1,37 @@
+/**
+ * Evo Theme - 404 Page Styles
+ * Subtle enhancements for the 404 error page
+ * 
+ * @description Light styling improvements while maintaining simplicity
+ * @version 1.0.0
+ */
+
+.evo-404-wrapper {
+  padding: 2rem 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.evo-404-text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.evo-404-actions {
+  // Button spacing is controlled via inline style from section settings
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .evo-404-wrapper {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .evo-404-text {
+    font-size: 1rem;
+  }
+  
+  // Button uses theme default styles
+}

@@ -1,23 +1,139 @@
-{% comment %}
-  This section is used in the 404 template to render page shown when customers
-  enter an invalid store URL.
+<!-- /sections/404.liquid -->
+{%- comment -%}
+  Evo Theme - 404 Error Page
+{%- endcomment -%}
 
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/404
-{% endcomment %}
-
-<h1>{{ '404.title' | t }}</h1>
-
-<p>
-  {{ '404.not_found' | t }}
-</p>
-
-<a href="{{ routes.all_products_collection_url }}">
-  {{ '404.back_to_shopping' | t }}
-</a>
+<div class="{{ section.settings.width }} section-padding"
+  style="--PT: {{ section.settings.padding_top }}px; --PB: {{ section.settings.padding_bottom }}px;">
+  <div class="float-grid">
+    <div class="grid__item medium-up--two-thirds medium-up--push-one-sixth">
+      <div class="evo-404-wrapper">
+        <h1 class="title text-center">{{ 'general.404.title' | t }}</h1>
+        <p class="text-center evo-404-text">{{ 'general.404.subtext_html' | t }}</p>
+        
+        {%- if section.settings.show_button -%}
+          <div class="text-center evo-404-actions" 
+            style="margin-top: {{ section.settings.button_spacing }}px;">
+            <a href="{{ routes.root_url }}" class="btn {{ section.settings.button_style }}">
+              {{ section.settings.button_text | default: 'Continue Shopping' }}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
-  "name": "t:general.404",
-  "settings": []
+	"name": "404 Page",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Layout Settings"
+		},
+		{
+			"type": "select",
+			"id": "width",
+			"label": "Section width",
+			"default": "wrapper",
+			"options": [
+				{
+					"value": "wrapper--full",
+					"label": "Full width padded"
+				},
+				{
+					"value": "wrapper",
+					"label": "Page width"
+				},
+				{
+					"value": "wrapper--narrow",
+					"label": "Narrow width"
+				}
+			]
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"min": 0,
+			"max": 180,
+			"step": 4,
+			"unit": "px",
+			"label": "Top padding",
+			"default": 60
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"min": 0,
+			"max": 180,
+			"step": 4,
+			"unit": "px",
+			"label": "Bottom padding",
+			"default": 60
+		},
+		{
+			"type": "header",
+			"content": "Button Settings"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_button",
+			"label": "Show return button",
+			"default": true
+		},
+		{
+			"type": "text",
+			"id": "button_text",
+			"label": "Button text",
+			"default": "Continue Shopping"
+		},
+		{
+			"type": "select",
+			"id": "button_style",
+			"label": "Button style",
+			"default": "btn--primary",
+			"options": [
+				{
+					"value": "btn--primary",
+					"label": "Primary"
+				},
+				{
+					"value": "btn--secondary",
+					"label": "Secondary"
+				},
+				{
+					"value": "btn--black",
+					"label": "Black"
+				},
+				{
+					"value": "btn--white",
+					"label": "White"
+				},
+				{
+					"value": "btn--neutral",
+					"label": "Neutral"
+				},
+				{
+					"value": "btn--invert",
+					"label": "Invert"
+				},
+				{
+					"value": "btn--soft",
+					"label": "Soft"
+				}
+			]
+		},
+		{
+			"type": "range",
+			"id": "button_spacing",
+			"min": 0,
+			"max": 80,
+			"step": 4,
+			"unit": "px",
+			"label": "Button top spacing",
+			"default": 32
+		}
+	]
 }
 {% endschema %}

@@ -1,160 +1,155 @@
-<h1 align="center" style="position: relative;">
-  <br>
-    <img src="./assets/shoppy-x-ray.svg" alt="logo" width="200">
-  <br>
-  Shopify Skeleton Theme
-</h1>
+# Evo Theme - 现代化开发环境
 
-A minimal, carefully structured Shopify theme designed to help you quickly get started. Designed with modularity, maintainability, and Shopify's best practices in mind.
+Evo 是一个高性能的 Shopify 主题，专为现代电商体验而设计。本项目提供了完整的开发环境，使用最新的工具链进行高效开发。
 
-<p align="center">
-  <a href="./LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
-  <a href="./actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Shopify/skeleton-theme/actions/workflows/ci.yml/badge.svg"></a>
-</p>
+## 🚀 快速开始
 
-## Getting started
-
-### Prerequisites
-
-Before starting, ensure you have the latest Shopify CLI installed:
-
-- [Shopify CLI](https://shopify.dev/docs/api/shopify-cli) – helps you download, upload, preview themes, and streamline your workflows
-
-If you use VS Code:
-
-- [Shopify Liquid VS Code Extension](https://shopify.dev/docs/storefronts/themes/tools/shopify-liquid-vscode) – provides syntax highlighting, linting, inline documentation, and auto-completion specifically designed for Liquid templates
-
-### Clone
-
-Clone this repository using Git or Shopify CLI:
+### 安装依赖
 
 ```bash
-git clone git@github.com:Shopify/skeleton-theme.git
-# or
-shopify theme init
+npm install
 ```
 
-### Preview
-
-Preview this theme using Shopify CLI:
+### 开发模式
 
 ```bash
-shopify theme dev
+npm run dev
 ```
 
-## Theme architecture
+这将启动 Vite 的监听模式，自动编译源代码到 `assets/` 目录。
+
+### 生产构建
 
 ```bash
-.
-├── assets          # Stores static assets (CSS, JS, images, fonts, etc.)
-├── blocks          # Reusable, nestable, customizable UI components
-├── config          # Global theme settings and customization options
-├── layout          # Top-level wrappers for pages (layout templates)
-├── locales         # Translation files for theme internationalization
-├── sections        # Modular full-width page components
-├── snippets        # Reusable Liquid code or HTML fragments
-└── templates       # Templates combining sections to define page structures
+npm run build
 ```
 
-To learn more, refer to the [theme architecture documentation](https://shopify.dev/docs/storefronts/themes/architecture).
+### 代码检查
 
-### Templates
+```bash
+npm run lint
+npm run lint:fix  # 自动修复
+```
 
-[Templates](https://shopify.dev/docs/storefronts/themes/architecture/templates#template-types) control what's rendered on each type of page in a theme.
+## 📁 项目结构
 
-The Skeleton Theme scaffolds [JSON templates](https://shopify.dev/docs/storefronts/themes/architecture/templates/json-templates) to make it easy for merchants to customize their store.
+```
+src/
+├── components/          # 可复用组件
+│   ├── modals.js
+│   ├── float-labels.js
+│   ├── error-tab-index.js
+│   └── custom-scrollbar.js
+├── data/               # Alpine.js 数据组件
+│   ├── announcement.js
+│   ├── announcement-slider.js
+│   ├── announcement-ticker.js
+│   ├── toggle.js
+│   ├── tabs.js
+│   └── overflow.js
+├── plugins/            # Alpine.js 插件
+│   ├── flickity.js
+│   ├── disclosure.js
+│   └── ...
+├── directives/         # Alpine.js 指令
+│   └── target-referrer.js
+├── utils/              # 工具函数
+│   ├── polyfills.js
+│   ├── theme-globals.js
+│   └── resolution.js
+├── main.js            # 主入口文件
+└── vendor.js          # 第三方依赖
+```
 
-None of the template types are required, and not all of them are included in the Skeleton Theme. Refer to the [template types reference](https://shopify.dev/docs/storefronts/themes/architecture/templates#template-types) for a full list.
+## 🛠 技术栈
 
-### Sections
+- **构建工具**: Vite
+- **前端框架**: Alpine.js
+- **样式**: TailwindCSS (如果需要)
+- **代码检查**: ESLint
+- **类型检查**: TypeScript (可选)
 
-[Sections](https://shopify.dev/docs/storefronts/themes/architecture/sections) are Liquid files that allow you to create reusable modules of content that can be customized by merchants. They can also include blocks which allow merchants to add, remove, and reorder content within a section.
+## 📦 主要依赖
 
-Sections are made customizable by including a `{% schema %}` in the body. For more information, refer to the [section schema documentation](https://shopify.dev/docs/storefronts/themes/architecture/sections/section-schema).
+- **Alpine.js**: 轻量级响应式框架
+- **Flickity**: 轮播图组件
+- **AOS**: 滚动动画
+- **Axios**: HTTP 客户端
+- **MicroModal**: 模态框组件
+- **Rellax**: 视差滚动
 
-### Blocks
+## 🔧 开发指南
 
-[Blocks](https://shopify.dev/docs/storefronts/themes/architecture/blocks) let developers create flexible layouts by breaking down sections into smaller, reusable pieces of Liquid. Each block has its own set of settings, and can be added, removed, and reordered within a section.
+### 添加新组件
 
-Blocks are made customizable by including a `{% schema %}` in the body. For more information, refer to the [block schema documentation](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/schema).
+1. 在 `src/components/` 中创建新文件
+2. 在 `src/main.js` 中导入并注册
 
-## Schemas
+### 添加 Alpine.js 数据组件
 
-When developing components defined by schema settings, we recommend these guidelines to simplify your code:
+1. 在 `src/data/` 中创建新文件
+2. 导出一个返回对象的函数
+3. 在 `src/main.js` 中注册：
 
-- **Single property settings**: For settings that correspond to a single CSS property, use CSS variables:
+```javascript
+import myComponent from '@data/my-component'
+Alpine.data('myComponent', myComponent)
+```
 
-  ```liquid
-  <div class="collection" style="--gap: {{ block.settings.gap }}px">
-    ...
-  </div>
+### 添加 Alpine.js 插件
 
-  {% stylesheet %}
-    .collection {
-      gap: var(--gap);
-    }
-  {% endstylesheet %}
+1. 在 `src/plugins/` 中创建新文件
+2. 导出一个接收 Alpine 实例的函数
+3. 在 `src/main.js` 中注册：
 
-  {% schema %}
-  {
-    "settings": [{
-      "type": "range",
-      "label": "gap",
-      "id": "gap",
-      "min": 0,
-      "max": 100,
-      "unit": "px",
-      "default": 0,
-    }]
-  }
-  {% endschema %}
-  ```
+```javascript
+import myPlugin from '@plugins/my-plugin'
+Alpine.plugin(myPlugin)
+```
 
-- **Multiple property settings**: For settings that control multiple CSS properties, use CSS classes:
+## 🎯 路径别名
 
-  ```liquid
-  <div class="collection {{ block.settings.layout }}">
-    ...
-  </div>
+项目配置了以下路径别名：
 
-  {% stylesheet %}
-    .collection--full-width {
-      /* multiple styles */
-    }
-    .collection--narrow {
-      /* multiple styles */
-    }
-  {% endstylesheet %}
+- `@` → `src/`
+- `@components` → `src/components/`
+- `@plugins` → `src/plugins/`
+- `@data` → `src/data/`
+- `@utils` → `src/utils/`
+- `@styles` → `src/styles/`
 
-  {% schema %}
-  {
-    "settings": [{
-      "type": "select",
-      "id": "layout",
-      "label": "layout",
-      "values": [
-        { "value": "collection--full-width", "label": "t:options.full" },
-        { "value": "collection--narrow", "label": "t:options.narrow" }
-      ]
-    }]
-  }
-  {% endschema %}
-  ```
+## 📝 注意事项
 
-## CSS & JavaScript
+1. **不要直接编辑 `assets/theme.js`**，这是编译后的文件
+2. 所有源代码修改都应该在 `src/` 目录中进行
+3. 开发时使用 `npm run dev` 保持文件监听
+4. 提交前运行 `npm run lint` 检查代码质量
 
-For CSS and JavaScript, we recommend using the [`{% stylesheet %}`](https://shopify.dev/docs/api/liquid/tags#stylesheet) and [`{% javascript %}`](https://shopify.dev/docs/api/liquid/tags/javascript) tags. They can be included multiple times, but the code will only appear once.
+## 🔄 架构特色
 
-### `critical.css`
+Evo 主题采用现代化的开发架构，具有以下特色：
 
-The Skeleton Theme explicitly separates essential CSS necessary for every page into a dedicated `critical.css` file.
+1. **模块化设计**: 组件化架构，便于维护和扩展
+2. **现代化技术栈**: 使用 ES6+ 语法和模块系统
+3. **高效工具链**: 集成 Vite 构建工具，提供极速开发体验
+4. **代码质量保障**: 内置 ESLint 和 TypeScript 支持
 
-## Contributing
+## 🐛 故障排除
 
-We're excited for your contributions to the Skeleton Theme! This repository aims to remain as lean, lightweight, and fundamental as possible, and we kindly ask your contributions to align with this intention.
+### 构建失败
 
-Visit our [CONTRIBUTING.md](./CONTRIBUTING.md) for a detailed overview of our process, guidelines, and recommendations.
+1. 检查 Node.js 版本 (推荐 16+)
+2. 删除 `node_modules` 重新安装
+3. 检查 `src/` 目录中的语法错误
 
-## License
+### Alpine.js 组件不工作
 
-Skeleton Theme is open-sourced under the [MIT](./LICENSE.md) License.
+1. 确保在 `main.js` 中正确注册
+2. 检查浏览器控制台错误
+3. 验证 HTML 中的 Alpine.js 指令
+
+## 📄 许可证
+
+Evo Theme - Modern Shopify Development Framework
+
+本主题采用现代化开发理念，专注于性能优化和用户体验。适用于专业开发者和电商团队使用。
