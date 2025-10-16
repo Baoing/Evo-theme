@@ -11494,6 +11494,32 @@ var _a;
   document.addEventListener("DOMContentLoaded", () => {
     initCustomScrollbar(document);
   });
+  function removeLoadingClassFromLoadedImages(container) {
+    container.querySelectorAll("img").forEach((el) => {
+      if (el.complete) {
+        el.parentNode.classList.remove("loading-shimmer");
+      }
+    });
+  }
+  function handleImageLoaded(el) {
+    if (el.tagName === "IMG" && el.parentNode.classList.contains("loading-shimmer")) {
+      el.parentNode.classList.remove("loading-shimmer");
+    }
+  }
+  function initImageLoading(container = document) {
+    removeLoadingClassFromLoadedImages(container);
+    container.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener("load", () => handleImageLoaded(img), { once: true });
+        img.addEventListener("error", () => handleImageLoaded(img), { once: true });
+      }
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => initImageLoading());
+  } else {
+    initImageLoading();
+  }
   module_default.data("announcement", announcement);
   module_default.data("announcementSlider", announcementSlider);
   module_default.data("announcementTicker", announcementTicker);

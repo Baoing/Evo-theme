@@ -51,6 +51,7 @@ import '@components/modals'
 import '@components/float-labels'
 import '@components/error-tab-index'
 import '@components/custom-scrollbar'
+import '@components/image-loading'
 
 // Register Alpine.js data components
 Alpine.data('announcement', announcement)
