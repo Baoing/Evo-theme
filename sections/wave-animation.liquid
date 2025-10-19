@@ -1,6 +1,6 @@
 <!-- /sections/wave-animation.liquid -->
 {%- comment -%}
-  水波纹动画Section - 基于背景图片的波浪动画效果
+  水波浪动画Section - 基于背景图片的波浪动画效果
 {%- endcomment -%}
 
 <style>
@@ -28,6 +28,7 @@
   }
 
   .wave-section-{{ section.id }} .wave {
+    display: block;
     width: 100%;
     height: {{ section.settings.wave_height }}px;
     position: absolute;
@@ -118,7 +119,7 @@
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,50 Q450,0 900,50 T1800,50 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
       {% when 'style2' %}
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,30 Q300,80 600,30 Q900,80 1200,30 Q1500,80 1800,30 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
-      {% when 'style3' %>
+      {% when 'style3' %}
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,70 Q225,20 450,70 Q675,20 900,70 Q1125,20 1350,70 Q1575,20 1800,70 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
       {% when 'style4' %}
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1800 100'%3E%3Cpath d='M0,40 Q150,10 300,40 Q450,70 600,40 Q750,10 900,40 Q1050,70 1200,40 Q1350,10 1500,40 Q1650,70 1800,40 V100 H0 Z' fill='%23{{ wave4_color | remove: '#' }}'/%3E%3C/svg%3E");
@@ -192,6 +193,19 @@
       background-size: {{ section.settings.wave_width | times: 0.7 }}px {{ section.settings.wave_height | times: 0.7 }}px;
     }
 
+    /* 移动端整体下调各波浪层底部偏移，避免抬得过高 */
+    .wave-section-{{ section.id }} .wave.wave2 {
+      bottom: {{ section.settings.wave2_offset | times: 0.6 }}px;
+    }
+
+    .wave-section-{{ section.id }} .wave.wave3 {
+      bottom: {{ section.settings.wave3_offset | times: 0.6 }}px;
+    }
+
+    .wave-section-{{ section.id }} .wave.wave4 {
+      bottom: {{ section.settings.wave4_offset | times: 0.6 }}px;
+    }
+
     .wave-section-{{ section.id }} .wave-title {
       font-size: {{ section.settings.title_size | times: 0.8 }}px;
     }
@@ -205,6 +219,19 @@
     .wave-section-{{ section.id }} .wave {
       height: {{ section.settings.wave_height | times: 0.5 }}px;
       background-size: {{ section.settings.wave_width | times: 0.5 }}px {{ section.settings.wave_height | times: 0.5 }}px;
+    }
+
+    /* 更小屏幕进一步降低底部偏移 */
+    .wave-section-{{ section.id }} .wave.wave2 {
+      bottom: {{ section.settings.wave2_offset | times: 0.4 }}px;
+    }
+
+    .wave-section-{{ section.id }} .wave.wave3 {
+      bottom: {{ section.settings.wave3_offset | times: 0.4 }}px;
+    }
+
+    .wave-section-{{ section.id }} .wave.wave4 {
+      bottom: {{ section.settings.wave4_offset | times: 0.4 }}px;
     }
 
     .wave-section-{{ section.id }} .wave-title {
@@ -253,7 +280,7 @@
 
 {% schema %}
 {
-  "name": "水波纹动画",
+  "name": "水波浪动画",
   "class": "section",
   "settings": [
     {
@@ -573,7 +600,7 @@
   ],
   "presets": [
     {
-      "name": "水波纹动画",
+      "name": "水波浪动画",
       "settings": {
         "wave_style": "style1",
         "animation_speed": 15,

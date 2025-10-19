@@ -12,7 +12,9 @@
     "type-check": "tsc --noEmit",
     "backup": "node dev/backup-original.js",
     "setup": "npm run backup && npm install",
-    "dev:theme": "shopify theme dev"
+    "dev:theme": "shopify theme dev --store=baoea-test.myshopify.com",
+    "pull:theme": "shopify theme pull --store=baoea-test.myshopify.com",
+    "push:theme": "shopify theme push --store=baoea-test.myshopify.com"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",

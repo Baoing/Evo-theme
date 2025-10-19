@@ -1,5 +1,5 @@
 /*
-* Pipeline Theme
+* Eva Theme
 *
 * Use this file to add custom Javascript to Pipeline.  Keeping your custom
 * Javascript in this fill will make it easier to update Pipeline. In order
