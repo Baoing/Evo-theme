@@ -10002,7 +10002,7 @@ var _a;
     quickAdd: true,
     themeName: "Evo",
     themeVersion: "1.0.0",
-    themeAuthor: "Evo Development Team",
+    themeAuthor: "Will Baoea",
     performanceMode: true
   };
   window.theme.strings = {

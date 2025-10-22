@@ -4,7 +4,7 @@
  * 
  * @description High-performance theme built for modern e-commerce
  * @version 1.0.0
- * @author Evo Development Team
+ * @author Will Baoea
  */
 
 import Alpine from 'alpinejs'
