@@ -14535,7 +14535,7 @@ body .shopify-email-marketing-confirmation__container {
   font-weight: var(--TYPE-WEIGHT-NAV);
   text-transform: var(--FONT-NAV-TRANSFORM);
   letter-spacing: var(--FONT-NAV-LETTER-SPACING);
-  font-size: calc(var(--font-2) * var(--TYPE-ADJUST-NAV));
+  font-size: calc(var(--font-3) * var(--TYPE-ADJUST-NAV));
   white-space: nowrap;
   display: block;
 }
