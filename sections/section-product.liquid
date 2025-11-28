@@ -264,6 +264,16 @@
                 {% render 'product-quantity' product: product, uniq_id: product_form_id, block: block %}
               {% when 'variant-selectors' %}
                 {% render 'product-variant-options' product: product, uniq_id: product_form_id, block: block %}
+              {% when 'discount-coupon' %}
+                {% render 'dl-copy-coupon-h-v2',
+                  variant_id: block.settings.variant_id,
+                  discount_type: block.settings.discount_type,
+                  discount_value: block.settings.discount_value,
+                  discount_code: block.settings.discount_code,
+                  final_price_info: block.settings.final_price_info,
+                  code_info_template: block.settings.code_info_template,
+                  block: block
+                %}
               {% when 'siblings' %}
                 {% render 'product-siblings' product: product, uniq_id: product_form_id, block: block %}
               {% when 'subscription' %}
@@ -2786,6 +2796,78 @@
 					"unit": "px",
 					"label": "Padding bottom",
 					"default": 20
+				}
+			]
+		},
+		{
+			"type": "discount-coupon",
+			"name": "Discount coupon",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Discount coupon settings"
+				},
+				{
+					"type": "text",
+					"id": "variant_id",
+					"label": "Variant ID",
+					"info": "The variant ID when this coupon should be displayed"
+				},
+				{
+					"type": "select",
+					"id": "discount_type",
+					"label": "Discount type",
+					"options": [
+						{
+							"value": "percentage",
+							"label": "Percentage"
+						},
+						{
+							"value": "fixed",
+							"label": "Fixed amount"
+						}
+					],
+					"default": "percentage"
+				},
+				{
+					"type": "text",
+					"id": "discount_value",
+					"label": "Discount value",
+					"info": "Percentage (e.g., 15.0) or fixed amount",
+					"default": "15"
+				},
+				{
+					"type": "text",
+					"id": "discount_code",
+					"label": "Discount code",
+					"default": "LUMABF15"
+				},
+				{
+					"type": "text",
+					"id": "final_price_info",
+					"label": "Price info description",
+					"default": "Black friday offer"
+				},
+				{
+					"type": "text",
+					"id": "code_info_template",
+					"label": "Code display template",
+					"info": "Use {discount_code} as placeholder",
+					"default": "Code: {discount_code}"
+				},
+				{
+					"type": "header",
+					"content": "Block spacing"
+				},
+				{
+					"type": "range",
+					"id": "padding_bottom",
+					"min": 0,
+					"max": 50,
+					"step": 2,
+					"unit": "px",
+					"label": "Padding bottom",
+					"default": 10
 				}
 			]
 		},

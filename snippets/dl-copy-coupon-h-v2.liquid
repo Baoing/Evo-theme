@@ -1,0 +1,620 @@
+<!-- /snippets/dl-copy-coupon-h-v2.liquid -->
+
+{%- liquid
+  assign variant_id = variant_id | default: block.settings.variant_id | default: ''
+  assign discount_type = discount_type | default: block.settings.discount_type | default: 'percentage'
+  assign discount_value = discount_value | default: block.settings.discount_value | default: 0
+  assign discount_code = discount_code | default: block.settings.discount_code | default: ''
+  assign final_price_info = final_price_info | default: block.settings.final_price_info | default: ''
+  assign code_info_template = code_info_template | default: block.settings.code_info_template | default: 'Code: {discount_code}'
+-%}
+
+{%- if discount_code != '' -%}
+  <dl-copy-coupon-h-v2
+    data-dl-variant-id="{{ variant_id }}"
+    {% if block %}{{ block.shopify_attributes }}{% endif %}
+    style="padding-bottom: {{ block.settings.padding_bottom | default: 10 }}px;"
+  >
+    <div class="dl-copy-coupon-h-v2">
+    <div
+      class="dl-copy-coupon-h-v2-content"
+      data-dl-type="{{ discount_type }}"
+      data-dl-value="{{ discount_value }}"
+      data-dl-code="{{ discount_code }}"
+      data-dl-final-price-info="{{ final_price_info }}"
+      data-dl-code-info="{{ code_info_template }}"
+    >
+      <div class="dl-copy-coupon-h-v2-info">
+        <div class="dl-copy-coupon-h-v2-info-title">
+          {%- if discount_type == 'percentage' -%}
+            {{ discount_value }}% OFF
+          {%- else -%}
+            {%- liquid
+              assign discount_amount = discount_value | times: 1.0
+              assign discount_cents = discount_amount | times: 100 | round
+            -%}
+            {{ discount_cents | money }} OFF
+          {%- endif -%}
+        </div>
+        {%- if final_price_info != '' -%}
+          <div class="dl-copy-coupon-h-v2-info-desc">{{ final_price_info }}</div>
+        {%- endif -%}
+      </div>
+      <div class="dl-copy-coupon-h-v2-code">
+        <div class="dl-copy-coupon-h-v2-code-text">
+          {%- liquid
+            assign code_display = code_info_template
+            assign placeholder = '{discount_code}'
+            if code_display contains placeholder
+              assign code_display = code_display | replace: placeholder, discount_code
+            endif
+          -%}
+          {{ code_display }}
+        </div>
+        <button
+          type="button"
+          class="dl-copy-coupon-h-v2-code-btn"
+          data-copy-coupon-btn
+          aria-label="{{ 'general.share.copy_to_clipboard' | t }}"
+        >
+          <span class="dl-copy-coupon-h-v2-code-btn-before">Copy</span>
+          <span class="dl-copy-coupon-h-v2-code-btn-after">Copied!</span>
+        </button>
+      </div>
+    </div>
+    </div>
+  </dl-copy-coupon-h-v2>
+
+  <style>
+    dl-copy-coupon-h-v2 {
+      display: none
+    }
+
+    dl-copy-coupon-h-v2.dl-show {
+      display: block
+    }
+
+    .dl-copy-coupon-h-v2 {
+      height: 88px
+    }
+
+    .dl-copy-coupon-h-v2-content {
+      display: flex;
+      height: 100%;
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      position: relative
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      background-color: #315800
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      color: white
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      height: 100%
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      padding: 0 32px 0 34px
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      display: flex
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      flex-direction: column
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      justify-content: center
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      width: fit-content
+    }
+
+    .dl-copy-coupon-h-v2-info {
+      border-right: 2px white dashed
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::before,
+    .dl-copy-coupon-h-v2-code::after {
+      content: ""
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::before,
+    .dl-copy-coupon-h-v2-code::after {
+      width: 20px
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::before,
+    .dl-copy-coupon-h-v2-code::after {
+      height: 20px
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::before,
+    .dl-copy-coupon-h-v2-code::after {
+      border-radius: 100%
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::before,
+    .dl-copy-coupon-h-v2-code::after {
+      background-color: white
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::before,
+    .dl-copy-coupon-h-v2-code::after {
+      position: absolute
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::before,
+    .dl-copy-coupon-h-v2-code::after {
+      left: 0
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-code::before {
+      top: 0
+    }
+
+    .dl-copy-coupon-h-v2-info::before,
+    .dl-copy-coupon-h-v2-code::before {
+      transform: translate(-50%, -50%)
+    }
+
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::after {
+      bottom: 0
+    }
+
+    .dl-copy-coupon-h-v2-info::after,
+    .dl-copy-coupon-h-v2-code::after {
+      transform: translate(-50%, 50%)
+    }
+
+    .dl-copy-coupon-h-v2-info-title {
+      font-size: 24px
+    }
+
+    .dl-copy-coupon-h-v2-info-title {
+      font-style: normal
+    }
+
+    .dl-copy-coupon-h-v2-info-title {
+      font-weight: 500
+    }
+
+    .dl-copy-coupon-h-v2-info-title {
+      line-height: normal
+    }
+
+    .dl-copy-coupon-h-v2-info-title {
+      white-space: nowrap
+    }
+
+    .dl-copy-coupon-h-v2-info-desc {
+      font-size: 16px
+    }
+
+    .dl-copy-coupon-h-v2-info-desc {
+      font-style: normal
+    }
+
+    .dl-copy-coupon-h-v2-info-desc {
+      font-weight: 400
+    }
+
+    .dl-copy-coupon-h-v2-info-desc {
+      line-height: 150%
+    }
+
+    .dl-copy-coupon-h-v2-info-desc {
+      white-space: nowrap
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      display: flex
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      flex-grow: 1
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      position: relative
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      align-items: center
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      padding: 0 24px
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      background-color: #eaeee5
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      justify-content: space-between
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      gap: 8px
+    }
+
+    .dl-copy-coupon-h-v2-code {
+      border-radius: 4px
+    }
+
+    .dl-copy-coupon-h-v2-code-btn-after {
+      display: none
+    }
+
+    .dl-copy-coupon-h-v2-code-btn.dl-copied .dl-copy-coupon-h-v2-code-btn-after {
+      display: block
+    }
+
+    .dl-copy-coupon-h-v2-code-btn.dl-copied .dl-copy-coupon-h-v2-code-btn-before {
+      display: none
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      border-radius: 50px
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      border: 2px solid #315800
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      color: #315800
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      display: flex
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      align-items: center
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      justify-content: center
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      padding: 0 16px
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      height: 40px
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      background: transparent
+    }
+
+    .dl-copy-coupon-h-v2-code-btn {
+      cursor: pointer
+    }
+
+    .dl-copy-coupon-h-v2-code-btn span {
+      font-size: 16px
+    }
+
+    .dl-copy-coupon-h-v2-code-btn span {
+      font-style: normal
+    }
+
+    .dl-copy-coupon-h-v2-code-btn span {
+      font-weight: 400
+    }
+
+    .dl-copy-coupon-h-v2-code-btn span {
+      line-height: 140%
+    }
+
+    .dl-copy-coupon-h-v2-code-text {
+      font-size: 16px
+    }
+
+    .dl-copy-coupon-h-v2-code-text {
+      font-style: normal
+    }
+
+    .dl-copy-coupon-h-v2-code-text {
+      font-weight: 400
+    }
+
+    .dl-copy-coupon-h-v2-code-text {
+      color: #315800
+    }
+
+    @media screen and (min-width: 991px) and (max-width: 1440px) {
+        .dl-copy-coupon-h-v2 {
+            height: 6.11vw;
+        }
+    }
+
+    @media screen and (max-width: 990px) {
+      .dl-copy-coupon-h-v2 {
+        height: 17.0667vw
+      }
+
+      .dl-copy-coupon-h-v2-info {
+        padding: 0 4.2667vw 0 4.5333vw
+      }
+
+      .dl-copy-coupon-h-v2-info {
+        border-right: 0.2667vw white dashed
+      }
+
+      .dl-copy-coupon-h-v2-info {
+        min-width: 160px
+      }
+
+      .dl-copy-coupon-h-v2-info::before,
+      .dl-copy-coupon-h-v2-info::after,
+      .dl-copy-coupon-h-v2-code::before,
+      .dl-copy-coupon-h-v2-code::after {
+        width: 5.8667vw
+      }
+
+      .dl-copy-coupon-h-v2-info::before,
+      .dl-copy-coupon-h-v2-info::after,
+      .dl-copy-coupon-h-v2-code::before,
+      .dl-copy-coupon-h-v2-code::after {
+        height: 5.8667vw
+      }
+
+      .dl-copy-coupon-h-v2-info-title {
+        font-size: 5.3333vw
+      }
+
+      .dl-copy-coupon-h-v2-info-desc {
+        font-size: 3.2vw
+      }
+
+      .dl-copy-coupon-h-v2-code {
+        padding: 0 3.2vw
+      }
+
+      .dl-copy-coupon-h-v2-code {
+        gap: 2.1333vw
+      }
+
+      .dl-copy-coupon-h-v2-code {
+        border-radius: 1.0667vw
+      }
+
+      .dl-copy-coupon-h-v2-code-btn {
+        border-radius: 13.3333vw
+      }
+
+      .dl-copy-coupon-h-v2-code-btn {
+        border: 0.4vw solid #315800
+      }
+
+      .dl-copy-coupon-h-v2-code-btn {
+        padding: 0 4.8vw
+      }
+
+      .dl-copy-coupon-h-v2-code-btn {
+        height: 8.5333vw
+      }
+
+      .dl-copy-coupon-h-v2-code-btn span {
+        font-size: 3.2vw
+      }
+
+      .dl-copy-coupon-h-v2-code-text {
+        font-size: 3.2vw
+      }
+    }
+  </style>
+
+  <script>
+    (function() {
+      class CopyCoupon extends HTMLElement {
+        constructor() {
+          super()
+          // 如果变体ID为空字符串或未定义，则视为未填写
+          const variantIdValue = this.dataset.dlVariantId
+          this.variantId = variantIdValue && variantIdValue.trim() !== '' ? variantIdValue : null
+          this.content = null
+          this.copyBtn = null
+          this.discountCode = ''
+          this.initialized = false
+        }
+
+        connectedCallback() {
+          // 避免重复初始化
+          if (this.initialized) return
+
+          // 确保 DOM 已经连接后再初始化
+          this.content = this.querySelector('.dl-copy-coupon-h-v2-content')
+          this.copyBtn = this.querySelector('[data-copy-coupon-btn]')
+          this.discountCode = this.content?.dataset.dlCode || ''
+
+          if (this.content && this.copyBtn) {
+            this.initialized = true
+            this.init()
+          } else {
+            console.warn('dl-copy-coupon-h-v2: Missing required elements', {
+              content: !!this.content,
+              copyBtn: !!this.copyBtn
+            })
+          }
+        }
+
+        init() {
+          // 设置复制按钮
+          this.setupCopyButton()
+          
+          // 如果有变体ID，则监听变体变化；如果没有，则始终显示
+          if (this.variantId) {
+            this.handleVariantChange()
+          } else {
+            // 没有变体ID，代表全部变体都显示
+            this.classList.add('dl-show')
+          }
+        }
+
+        handleVariantChange() {
+          // 只在有变体ID时才监听变体变化
+          if (!this.variantId) return
+
+          // 监听产品表单的变体选择变化
+          const productForm = document.querySelector('product-form')
+          if (productForm) {
+            productForm.addEventListener('variant:change', (e) => {
+              this.checkVariant(e.detail?.variant?.id)
+            })
+          }
+
+          // 监听单选项选择器变化
+          document.addEventListener('change', (e) => {
+            if (e.target.matches('[data-single-option-selector], [data-product-select]')) {
+              setTimeout(() => {
+                const variantId = this.getCurrentVariantId()
+                this.checkVariant(variantId)
+              }, 100)
+            }
+          })
+
+          // 初始检查
+          const currentVariantId = this.getCurrentVariantId()
+          this.checkVariant(currentVariantId)
+        }
+
+        getCurrentVariantId() {
+          const productForm = document.querySelector('product-form')
+          if (productForm) {
+            const form = productForm.querySelector('form')
+            if (form) {
+              const variantInput = form.querySelector('input[name="id"]')
+              if (variantInput) {
+                return variantInput.value
+              }
+            }
+          }
+
+          // 备用方法：从 URL 参数获取
+          const urlParams = new URLSearchParams(window.location.search)
+          const variantParam = urlParams.get('variant')
+          if (variantParam) {
+            return variantParam
+          }
+
+          return null
+        }
+
+        checkVariant(variantId) {
+          // 如果没有设置变体ID，始终显示
+          if (!this.variantId) {
+            this.classList.add('dl-show')
+            return
+          }
+
+          // 如果有变体ID，检查是否匹配
+          if (variantId && String(variantId) === String(this.variantId)) {
+            this.classList.add('dl-show')
+          } else {
+            this.classList.remove('dl-show')
+          }
+        }
+
+        setupCopyButton() {
+          if (!this.copyBtn) {
+            console.warn('dl-copy-coupon-h-v2: Copy button not found')
+            return
+          }
+
+          this.copyBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            this.copyToClipboard()
+          })
+        }
+
+        async copyToClipboard() {
+          if (!this.discountCode) {
+            console.warn('dl-copy-coupon-h-v2: No discount code to copy')
+            return
+          }
+
+          if (!this.copyBtn) {
+            console.warn('dl-copy-coupon-h-v2: Copy button not found')
+            return
+          }
+
+          try {
+            await navigator.clipboard.writeText(this.discountCode)
+            this.copyBtn.classList.add('dl-copied')
+
+            // 2秒后恢复按钮状态
+            setTimeout(() => {
+              this.copyBtn.classList.remove('dl-copied')
+            }, 2000)
+          } catch (err) {
+            // 降级方案：使用传统方法
+            const textArea = document.createElement('textarea')
+            textArea.value = this.discountCode
+            textArea.style.position = 'fixed'
+            textArea.style.left = '-999999px'
+            document.body.appendChild(textArea)
+            textArea.select()
+
+            try {
+              document.execCommand('copy')
+              this.copyBtn.classList.add('dl-copied')
+              setTimeout(() => {
+                this.copyBtn.classList.remove('dl-copied')
+              }, 2000)
+            } catch (e) {
+              console.error('Failed to copy:', e)
+            } finally {
+              document.body.removeChild(textArea)
+            }
+          }
+        }
+      }
+
+      // 确保 DOM 准备好后再定义自定义元素
+      function defineCopyCoupon() {
+        if (!customElements.get('dl-copy-coupon-h-v2')) {
+          customElements.define('dl-copy-coupon-h-v2', CopyCoupon)
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', defineCopyCoupon)
+      } else {
+        defineCopyCoupon()
+      }
+    })()
+  </script>
+{%- endif -%}
+
