@@ -86,7 +86,7 @@
             <div class="blog__comments mt-r11" id="Comments">
 
               {% if article.comments_count > 0 %}
-                <p class="kicker-flourished text-left">{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</p>
+                <p class="heading-kicker text-left">{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</p>
               {% endif %}
 
               {% if comment and comment.created_at %}
@@ -137,7 +137,7 @@
                 {% comment %}
                   #AddCommentTitle is used simply as an anchor link
                 {% endcomment %}
-                <p class="kicker-flourished text-left mb-r8" id="AddCommentTitle">{{ 'blogs.comments.title' | t }}</p>
+                <p class="heading-kicker text-left mb-r8" id="AddCommentTitle">{{ 'blogs.comments.title' | t }}</p>
 
                 {{ form.errors | default_errors }}
 

@@ -11,7 +11,7 @@
     <div class="section-product section-padding product-section {{ section.settings.bg }}"
     style="--PT: {{ section.settings.padding_top }}px; --PB: {{ section.settings.padding_bottom }}px; --IMAGE-SPACING: {{ section.settings.image_spacing }}px;">
       {% unless section.settings.title == '' %}
-        <h2 class="kicker-flourished mb-r11">{{ section.settings.title | escape }}</h2>
+        <h2 class="heading-kicker mb-r11">{{ section.settings.title | escape }}</h2>
       {% endunless %}
         {% render 'onboarding-product' %}
     </div>
@@ -26,7 +26,7 @@
     style="--PT: {{ section.settings.padding_top }}px; --PB: {{ section.settings.padding_bottom }}px; --IMAGE-SPACING: {{ section.settings.image_spacing }}px;">
     {% unless section.settings.title == '' %}
       <div class="{{ section.settings.width }}">
-        <h2 class="kicker-flourished mb-r11">{{ section.settings.title | escape }}</h2>
+        <h2 class="heading-kicker mb-r11">{{ section.settings.title | escape }}</h2>
       </div>
     {% endunless %}
 

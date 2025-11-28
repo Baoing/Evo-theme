@@ -19,7 +19,7 @@
   <div class="float-grid mt-r12">
 
     <div class="grid__item two-thirds medium-down--one-whole">
-      <p class="kicker-flourished text-left my-r8">{{ 'customer.order.title' | t: name: order.name }}</p>
+      <p class="heading-kicker text-left my-r8">{{ 'customer.order.title' | t: name: order.name }}</p>
 
       <p>{{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}</p>
 
@@ -209,7 +209,7 @@
 
     <div class="grid__item one-third medium-down--one-whole">
 
-      <p class="kicker-flourished text-left my-r8">{{ 'customer.order.billing_address' | t }}</p>
+      <p class="heading-kicker text-left my-r8">{{ 'customer.order.billing_address' | t }}</p>
 
       <p>
         <strong>{{ order.billing_address.name }}</strong>
@@ -232,7 +232,7 @@
 
       <hr>
 
-      <p class="kicker-flourished text-left my-r8">{{ 'customer.order.shipping_address' | t }}</p>
+      <p class="heading-kicker text-left my-r8">{{ 'customer.order.shipping_address' | t }}</p>
 
       <p>
         <strong>{{ order.shipping_address.name }}</strong>

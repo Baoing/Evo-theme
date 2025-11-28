@@ -30,7 +30,7 @@
         <div new-address-form-inner {% unless form.errors %}class="hide"{% endunless %}>
           {{ form.errors | default_errors }}
 
-          <p class="kicker-flourished text-left my-r8">{{ 'customer.addresses.add_new' | t }}</p>
+          <p class="heading-kicker text-left my-r8">{{ 'customer.addresses.add_new' | t }}</p>
 
           <div class="float-grid">
 
@@ -97,7 +97,7 @@
       {% endform %}
     </div>
 
-    <p class="kicker-flourished text-left my-r8">{{ 'customer.addresses.title' | t }}</p>
+    <p class="heading-kicker text-left my-r8">{{ 'customer.addresses.title' | t }}</p>
 
     {% comment %}
       List all customer addresses with a unique edit form.
@@ -136,7 +136,7 @@
       <div id="EditAddress_{{ address.id }}" class="hide">
         {% form 'customer_address', address, class: 'form--standard  max-w-page-narrow' %}
 
-          <p class="kicker-flourished text-left my-r8">{{ 'customer.addresses.edit_address' | t }}</p>
+          <p class="heading-kicker text-left my-r8">{{ 'customer.addresses.edit_address' | t }}</p>
 
           <div class="float-grid">
             <div class="grid__item one-half mobile--one-whole">

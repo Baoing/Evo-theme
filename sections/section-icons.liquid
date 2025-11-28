@@ -34,7 +34,7 @@
   style="--PT: {{ section.settings.padding_top }}px; --PB: {{ section.settings.padding_bottom }}px; --ICON-SIZE: {{ section.settings.icons_size }}px;">
   <div class="{{ section.settings.width }} {{ section.settings.icon_alignment }}">
     {% if section.settings.title != blank %}
-      <h2 class="kicker-flourished mb-r11">{{ section.settings.title | escape }}</h2>
+      <h2 class="heading-kicker mb-r11">{{ section.settings.title | escape }}</h2>
     {% endif %}
 
     <div class="float-grid {{ section.settings.layout }} {% unless section.blocks.size == 5 %}grid--uniform{% endunless %}">

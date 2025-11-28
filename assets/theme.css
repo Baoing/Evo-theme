@@ -4436,7 +4436,7 @@ video {
   opacity: 0.7;
 }
 .shadow{
-  --tw-shadow: 
+  --tw-shadow:
         calc(sin(var(--light-source-angle)) * var(--light-source-distance) * 0.3) calc(cos(var(--light-source-angle)) * var(--light-source-distance) * 0.3) 0.8px hsl(var(--shadow-color-hsl) / 0.16),
         calc(sin(var(--light-source-angle)) * var(--light-source-distance) * 0.9) calc(cos(var(--light-source-angle)) * var(--light-source-distance) * 0.9) 1.8px -2px hsl(var(--shadow-color-hsl) / 0.11),
         calc(sin(var(--light-source-angle)) * var(--light-source-distance) * 4.3) calc(cos(var(--light-source-angle)) * var(--light-source-distance) * 4.3) 8.6px -4px hsl(var(--shadow-color-hsl) / 0.08)
@@ -13145,21 +13145,21 @@ html:not(.no-js) body:not(.focus-enabled) *:focus {
 .text__standard {
   --cta-column-gap: 8px;
 }
-.kicker-flourished {
+.heading-kicker {
   font-family: var(--TYPE-STACK-KICKER);
   font-style: var(--TYPE-STYLE-KICKER);
   font-weight: var(--TYPE-WEIGHT-KICKER);
   text-transform: var(--FONT-KICKER-TRANSFORM);
   letter-spacing: var(--FONT-KICKER-LETTER-SPACING);
-  font-size: calc(var(--font-4) * var(--TYPE-ADJUST-KICKER));
+  font-size: calc(var(--font-6) * var(--TYPE-ADJUST-KICKER));
   color: var(--text);
   padding-bottom: var(--inner);
   position: relative;
   text-align: center;
 }
-.kicker-flourished:after {
+.heading-kicker:after {
   content: "";
-  width: 30px;
+  width: 40px;
   height: 3px;
   position: absolute;
   bottom: 0;
@@ -13168,7 +13168,7 @@ html:not(.no-js) body:not(.focus-enabled) *:focus {
   margin-inline-start: var(--kicker-flourish-left, auto);
   margin-inline-end: var(--kicker-flourish-right, auto);
   background: var(--text);
-  opacity: 0.2;
+  opacity: 0.4;
 }
 .kicker__line {
   padding-bottom: var(--inner);
@@ -19387,7 +19387,7 @@ label.quatity-selector {
 .collection-list-item:first-of-type {
   padding-top: 20px;
 }
-.kicker-flourished + .collection-list-item {
+.heading-kicker + .collection-list-item {
   padding-top: 0;
 }
 .collection-list__heading hr {
@@ -20236,7 +20236,7 @@ body.focus-enabled .subcollection__link:focus {
   position: relative;
 }
 @media only screen and (min-width: 480px) {
-  .collection-tabs .kicker-flourished {
+  .collection-tabs .heading-kicker {
     padding-left: var(--offset);
     padding-right: var(--offset);
   }
@@ -25146,7 +25146,7 @@ a.siblings__more-link {
 .title-left .section-carousel__header {
   justify-content: flex-start;
 }
-.title-left .section-carousel__header .kicker-flourished {
+.title-left .section-carousel__header .heading-kicker {
   --kicker-flourish-left: 0;
   text-align: left;
 }
