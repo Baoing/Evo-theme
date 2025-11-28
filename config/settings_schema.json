@@ -51,7 +51,7 @@
 			{
 				"type": "color",
 				"id": "color_highlight_link",
-				"label": "Sale text",
+				"label": "Sale menu link color",
 				"info": "Highlight menu links called 'Sale'",
 				"default": "#d2815f"
 			},
@@ -105,7 +105,7 @@
 				"type": "color",
 				"id": "color_text_inverse",
 				"label": "Dark text",
-				"default": "#FFFFFF"
+				"default": "#ffffff"
 			},
 			{
 				"type": "color",
@@ -135,7 +135,7 @@
 				"type": "color",
 				"id": "color_bg_bright",
 				"label": "Bright background",
-				"default": "#FFF9D9"
+				"default": "#fff9d9"
 			},
 			{
 				"type": "color",
@@ -148,20 +148,20 @@
 				"id": "color_primary_bright",
 				"label": "Bright primary accents",
 				"info": "Used to highlight the purchase path",
-				"default": "#EFBD1E"
+				"default": "#efbd1e"
 			},
 			{
 				"type": "color",
 				"id": "color_secondary_bright",
 				"label": "Bright secondary accents",
 				"info": "Used for text links, and secondary buttons",
-				"default": "#E7B000"
+				"default": "#e7b000"
 			},
 			{
 				"type": "color",
 				"id": "color_bg_accent_bright",
 				"label": "Bright accent background",
-				"default": "#FFF333"
+				"default": "#fff333"
 			},
 			{
 				"type": "select",
@@ -407,12 +407,14 @@
 			{
 				"type": "checkbox",
 				"id": "font_heading_uppercase",
-				"label": "Uppercase headings"
+				"label": "Uppercase headings",
+				"default": false
 			},
 			{
 				"type": "checkbox",
 				"id": "font_body_uppercase",
-				"label": "Uppercase body text"
+				"label": "Uppercase body text",
+				"default": false
 			},
 			{
 				"type": "checkbox",
@@ -637,8 +639,8 @@
 			},
 			{
 				"type": "range",
-				"label": "Slideshow delay",
 				"id": "cycle_images_hover_delay",
+				"label": "Slideshow delay",
 				"default": 1.5,
 				"min": 0.5,
 				"max": 5,
@@ -683,9 +685,9 @@
 			},
 			{
 				"type": "checkbox",
-				"label": "Darken product photos",
-				"info": "Creates a light grey background",
 				"id": "product_background_grey",
+				"label": "Add grey background to product photos",
+				"info": "Creates a light grey background",
 				"default": false
 			},
 			{
@@ -744,21 +746,21 @@
 			},
 			{
 				"type": "checkbox",
-				"label": "Enable swatches",
 				"id": "swatches_enable",
+				"label": "Enable swatches",
 				"info": "Learn about [color swatches](https://groupthought.com/link/pipeline/docs/swatches)",
 				"default": true
 			},
 			{
 				"type": "checkbox",
-				"label": "Show swatches as squares",
 				"id": "swatches_squares",
+				"label": "Show swatches as squares",
 				"default": false
 			},
 			{
 				"type": "checkbox",
-				"label": "Show swatches on collections",
 				"id": "swatches_collection_enable",
+				"label": "Show swatches on collections",
 				"default": true
 			},
 			{
@@ -777,15 +779,15 @@
 			},
 			{
 				"type": "checkbox",
-				"label": "Show siblings on collections",
 				"id": "show_siblings",
+				"label": "Show siblings on collections",
 				"info": "Learn about linked [color siblings](https://groupthought.com/link/pipeline/docs/siblings)",
 				"default": true
 			},
 			{
 				"type": "checkbox",
-				"label": "Show cutline",
 				"id": "show_cutline",
+				"label": "Show color cutline",
 				"info": "Learn about [color cutlines](https://groupthought.com/link/pipeline/docs/cutline)",
 				"default": true
 			},
@@ -795,26 +797,26 @@
 			},
 			{
 				"type": "checkbox",
-				"label": "Show sale badges",
 				"id": "badge_sale",
+				"label": "Show sale badges",
 				"default": true
 			},
 			{
 				"type": "checkbox",
-				"label": "Show sale amount",
 				"id": "badge_sale_discount",
+				"label": "Show sale amount",
 				"default": false
 			},
 			{
 				"type": "checkbox",
-				"label": "Show sold out badges",
 				"id": "badge_sellout",
+				"label": "Show sold out badges",
 				"default": true
 			},
 			{
 				"type": "checkbox",
-				"label": "Enable [custom badges](https://groupthought.com/link/pipeline/docs/badges)",
 				"id": "badge_custom",
+				"label": "Enable [custom badges](https://groupthought.com/link/pipeline/docs/badges)",
 				"default": true
 			},
 			{
@@ -928,14 +930,14 @@
 			{
 				"type": "text",
 				"id": "free_shipping_limit",
-				"label": "Minimum spend for free shipping",
+				"label": "Free shipping threshold",
 				"default": "100",
 				"info": "Use round numbers. Exclude currency, symbols, and letters. [More info](https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/free-shipping-rates#free-shipping-over-a-certain-value)"
 			},
 			{
 				"type": "url",
 				"id": "cart_continue_browsing",
-				"label": "Empty cart link",
+				"label": "Continue shopping link",
 				"info": "Continue browsing link for the empty cart"
 			}
 		]
@@ -980,7 +982,7 @@
 			{
 				"type": "text",
 				"id": "social_youtube_link",
-				"label": "Youtube",
+				"label": "YouTube",
 				"info": "https://www.youtube.com/shopify"
 			},
 			{
@@ -998,7 +1000,7 @@
 			{
 				"type": "text",
 				"id": "social_linkedin_link",
-				"label": "Linkedin",
+				"label": "LinkedIn",
 				"info": "https://www.linkedin.com/company/shopify"
 			},
 			{
@@ -1104,19 +1106,141 @@
 		]
 	},
 	{
+		"name": "Performance",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Image optimization"
+			},
+			{
+				"type": "checkbox",
+				"id": "lazy_load_enable",
+				"label": "Enable lazy loading",
+				"default": true,
+				"info": "Improves page load speed by loading images only when needed"
+			},
+			{
+				"type": "checkbox",
+				"id": "preload_critical_images",
+				"label": "Preload critical images",
+				"default": true,
+				"info": "Preloads above-the-fold images for faster initial render"
+			},
+			{
+				"type": "header",
+				"content": "Animation performance"
+			},
+			{
+				"type": "checkbox",
+				"id": "reduce_motion",
+				"label": "Respect prefers-reduced-motion",
+				"default": true,
+				"info": "Disables animations for users who prefer reduced motion"
+			}
+		]
+	},
+	{
+		"name": "SEO",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Structured data"
+			},
+			{
+				"type": "checkbox",
+				"id": "enable_structured_data",
+				"label": "Enable structured data",
+				"default": true,
+				"info": "Helps search engines understand your content"
+			},
+			{
+				"type": "header",
+				"content": "Social sharing"
+			},
+			{
+				"type": "image_picker",
+				"id": "og_image",
+				"label": "Default social sharing image",
+				"info": "Used when sharing links on social media. Recommended size: 1200 x 630px"
+			}
+		]
+	},
+	{
+		"name": "Accessibility",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Accessibility features"
+			},
+			{
+				"type": "checkbox",
+				"id": "enable_skip_to_content",
+				"label": "Enable skip to content link",
+				"default": true,
+				"info": "Helps keyboard users navigate faster"
+			},
+			{
+				"type": "checkbox",
+				"id": "enable_focus_indicators",
+				"label": "Show focus indicators",
+				"default": true,
+				"info": "Shows visible focus outlines for keyboard navigation"
+			},
+			{
+				"type": "range",
+				"id": "focus_indicator_width",
+				"label": "Focus indicator width",
+				"min": 1,
+				"max": 4,
+				"step": 0.5,
+				"unit": "px",
+				"default": 2
+			}
+		]
+	},
+	{
+		"name": "404 Page",
+		"settings": [
+			{
+				"type": "text",
+				"id": "404_heading",
+				"label": "Heading",
+				"default": "404"
+			},
+			{
+				"type": "textarea",
+				"id": "404_text",
+				"label": "Text",
+				"default": "The page you're looking for doesn't exist."
+			},
+			{
+				"type": "text",
+				"id": "404_button_text",
+				"label": "Button text",
+				"default": "Continue shopping"
+			},
+			{
+				"type": "url",
+				"id": "404_button_link",
+				"label": "Button link",
+				"default": "/"
+			}
+		]
+	},
+	{
 		"name": "Advanced",
 		"settings": [
 			{
 				"type": "text",
 				"id": "exclude_collections_strict",
-				"label": "Exclude collections",
+				"label": "Exclude collections by handle",
 				"default": "all, frontpage",
 				"info": "Use comma to separate the collections"
 			},
 			{
 				"type": "text",
 				"id": "exclude_collections_contain",
-				"label": "Exclude collections if they contain",
+				"label": "Exclude collections containing",
 				"default": "sibling",
 				"info": "Use comma to separate the collections"
 			}

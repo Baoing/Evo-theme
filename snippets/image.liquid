@@ -44,7 +44,15 @@
   endif
 
   assign width = width | default: image.width
-  assign loading = loading | default: 'lazy'
+  
+  # Apply lazy loading setting from theme settings
+  if loading == blank
+    if settings.lazy_load_enable != false
+      assign loading = 'lazy'
+    else
+      assign loading = 'eager'
+    endif
+  endif
 
   # Define a default width for browsers that do not support srcset
   # Set a ceiling to avoid massive images on old mobile browsers
@@ -59,7 +67,14 @@
     endif
   endif
 
-  assign fetchpriority = fetchpriority | default: 'auto'
+  # Apply preload critical images setting
+  if fetchpriority == blank
+    if settings.preload_critical_images and loading == 'eager'
+      assign fetchpriority = 'high'
+    else
+      assign fetchpriority = 'auto'
+    endif
+  endif
 
   if placeholder != false
     assign placeholder = placeholder | default: 'image'

@@ -410,6 +410,9 @@
 /* === Icon Stroke Width === */
 --ICON-STROKE-WIDTH: {{ settings.icon_stroke_width | append: 'px' }};
 
+/* === Accessibility === */
+--FOCUS-INDICATOR-WIDTH: {{ settings.focus_indicator_width | default: 2 | append: 'px' }};
+
 
 /* ================ Typography ================ */
 
@@ -507,5 +510,46 @@
 }
 
 {% render 'font-size' %}
+
+/* ================ Accessibility Styles ================ */
+
+/* Focus indicators */
+{% if settings.enable_focus_indicators %}
+  *:focus-visible {
+    outline: var(--FOCUS-INDICATOR-WIDTH) solid var(--COLOR-PRIMARY);
+    outline-offset: 2px;
+  }
+  
+  .no-focus-indicators *:focus-visible {
+    outline: none;
+  }
+{% else %}
+  *:focus-visible {
+    outline: none;
+  }
+{% endif %}
+
+/* Reduce motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+{% if settings.reduce_motion %}
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+{% endif %}
 
 {% endstyle %}

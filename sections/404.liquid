@@ -8,14 +8,18 @@
   <div class="float-grid">
     <div class="grid__item medium-up--two-thirds medium-up--push-one-sixth">
       <div class="evo-404-wrapper">
-        <h1 class="title text-center">{{ 'general.404.title' | t }}</h1>
-        <p class="text-center evo-404-text">{{ 'general.404.subtext_html' | t }}</p>
+        {%- assign heading_404 = settings['404_heading'] | default: '' -%}
+        <h1 class="title text-center">{% if heading_404 != blank %}{{ heading_404 }}{% else %}{{ 'general.404.title' | t }}{% endif %}</h1>
+        {%- assign text_404 = settings['404_text'] | default: '' -%}
+        <p class="text-center evo-404-text">{% if text_404 != blank %}{{ text_404 }}{% else %}{{ 'general.404.subtext_html' | t }}{% endif %}</p>
         
         {%- if section.settings.show_button -%}
           <div class="text-center evo-404-actions" 
             style="margin-top: {{ section.settings.button_spacing }}px;">
-            <a href="{{ routes.root_url }}" class="btn {{ section.settings.button_style }}">
-              {{ section.settings.button_text | default: 'Continue Shopping' }}
+            {%- assign button_link_404 = settings['404_button_link'] | default: '' -%}
+            <a href="{% if button_link_404 != blank %}{{ button_link_404 }}{% else %}{{ routes.root_url }}{% endif %}" class="btn {{ section.settings.button_style }}">
+              {%- assign button_text_404 = settings['404_button_text'] | default: '' -%}
+              {% if button_text_404 != blank %}{{ button_text_404 }}{% elsif section.settings.button_text != blank %}{{ section.settings.button_text }}{% else %}Continue Shopping{% endif %}
             </a>
           </div>
         {%- endif -%}

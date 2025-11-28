@@ -71,6 +71,10 @@
 
   {%- render 'social-meta-tags' -%}
 
+  {%- if settings.enable_structured_data -%}
+    {%- render 'structured-data' -%}
+  {%- endif -%}
+
   <!-- CSS ================================================================== -->
 
   {{ 'font-settings.css' | asset_url | stylesheet_tag: preload: true }}
@@ -84,6 +88,12 @@
 
     {% if settings.animations_scroll_enable %}
       document.documentElement.classList.add('aos-initialized');
+    {%- endif -%}
+
+    {%- if settings.reduce_motion -%}
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduce-motion');
+      }
     {%- endif -%}
 
     let root = '{{ routes.root_url }}';
@@ -151,7 +161,11 @@
         show_currency_mobile: {{ settings.show_currency_mobile | json }},
         currency_select_type: {{ settings.currency_select_type | json }},
         currency_code_enable: {{ settings.currency_code_enable | json }},
-        cycle_images_hover_delay: {{ settings.cycle_images_hover_delay }}
+        cycle_images_hover_delay: {{ settings.cycle_images_hover_delay }},
+        lazy_load_enable: {{ settings.lazy_load_enable | json }},
+        preload_critical_images: {{ settings.preload_critical_images | json }},
+        enable_focus_indicators: {{ settings.enable_focus_indicators | json }},
+        focus_indicator_width: {{ settings.focus_indicator_width | default: 2 }}
       },
       info: {
         name: 'pipeline'
@@ -230,9 +244,11 @@
 </head>
 
 
-<body id="{{ page_title | handle }}" class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {{ settings.default_background }}{% if customer %} customer-logged-in{% endif %}">
+<body id="{{ page_title | handle }}" class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} {{ settings.default_background }}{% if customer %} customer-logged-in{% endif %}{% unless settings.enable_focus_indicators %} no-focus-indicators{% endunless %}">
 
-  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  {%- if settings.enable_skip_to_content -%}
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  {%- endif -%}
 
   {% sections 'group-header' %}
   {% sections 'group-overlay' %}
