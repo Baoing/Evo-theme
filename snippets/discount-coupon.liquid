@@ -1,4 +1,4 @@
-<!-- /snippets/dl-copy-coupon-h-v2.liquid -->
+<!-- /snippets/discount-coupon.liquid -->
 
 {%- liquid
   assign variant_id = variant_id | default: block.settings.variant_id | default: ''
@@ -10,22 +10,22 @@
 -%}
 
 {%- if discount_code != '' -%}
-  <dl-copy-coupon-h-v2
-    data-dl-variant-id="{{ variant_id }}"
+  <discount-coupon
+    data-variant-id="{{ variant_id }}"
     {% if block %}{{ block.shopify_attributes }}{% endif %}
     style="padding-bottom: {{ block.settings.padding_bottom | default: 10 }}px;"
   >
-    <div class="dl-copy-coupon-h-v2">
+    <div class="discount-coupon">
     <div
-      class="dl-copy-coupon-h-v2-content"
-      data-dl-type="{{ discount_type }}"
-      data-dl-value="{{ discount_value }}"
-      data-dl-code="{{ discount_code }}"
-      data-dl-final-price-info="{{ final_price_info }}"
-      data-dl-code-info="{{ code_info_template }}"
+      class="discount-coupon-content"
+      data-type="{{ discount_type }}"
+      data-value="{{ discount_value }}"
+      data-code="{{ discount_code }}"
+      data-final-price-info="{{ final_price_info }}"
+      data-code-info="{{ code_info_template }}"
     >
-      <div class="dl-copy-coupon-h-v2-info">
-        <div class="dl-copy-coupon-h-v2-info-title">
+      <div class="discount-coupon-info">
+        <div class="discount-coupon-info-title">
           {%- if discount_type == 'percentage' -%}
             {{ discount_value }}% OFF
           {%- else -%}
@@ -37,11 +37,11 @@
           {%- endif -%}
         </div>
         {%- if final_price_info != '' -%}
-          <div class="dl-copy-coupon-h-v2-info-desc">{{ final_price_info }}</div>
+          <div class="discount-coupon-info-desc">{{ final_price_info }}</div>
         {%- endif -%}
       </div>
-      <div class="dl-copy-coupon-h-v2-code">
-        <div class="dl-copy-coupon-h-v2-code-text">
+      <div class="discount-coupon-code">
+        <div class="discount-coupon-code-text">
           {%- liquid
             assign code_display = code_info_template
             assign placeholder = '{discount_code}'
@@ -53,383 +53,383 @@
         </div>
         <button
           type="button"
-          class="dl-copy-coupon-h-v2-code-btn"
+          class="discount-coupon-code-btn"
           data-copy-coupon-btn
           aria-label="{{ 'general.share.copy_to_clipboard' | t }}"
         >
-          <span class="dl-copy-coupon-h-v2-code-btn-before">Copy</span>
-          <span class="dl-copy-coupon-h-v2-code-btn-after">Copied!</span>
+          <span class="discount-coupon-code-btn-before">Copy</span>
+          <span class="discount-coupon-code-btn-after">Copied!</span>
         </button>
       </div>
     </div>
     </div>
-  </dl-copy-coupon-h-v2>
+  </discount-coupon>
 
   <style>
-    dl-copy-coupon-h-v2 {
+    discount-coupon {
       display: none
     }
 
-    dl-copy-coupon-h-v2.dl-show {
+    discount-coupon.dl-show {
       display: block
     }
 
-    .dl-copy-coupon-h-v2 {
+    .discount-coupon {
       height: 88px
     }
 
-    .dl-copy-coupon-h-v2-content {
+    .discount-coupon-content {
       display: flex;
       height: 100%;
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       position: relative
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       background-color: #315800
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       color: white
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       height: 100%
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       padding: 0 32px 0 34px
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       display: flex
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       flex-direction: column
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       justify-content: center
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       width: fit-content
     }
 
-    .dl-copy-coupon-h-v2-info {
+    .discount-coupon-info {
       border-right: 2px white dashed
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::before,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::before,
+    .discount-coupon-info::after,
+    .discount-coupon-code::before,
+    .discount-coupon-code::after {
       content: ""
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::before,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::before,
+    .discount-coupon-info::after,
+    .discount-coupon-code::before,
+    .discount-coupon-code::after {
       width: 20px
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::before,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::before,
+    .discount-coupon-info::after,
+    .discount-coupon-code::before,
+    .discount-coupon-code::after {
       height: 20px
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::before,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::before,
+    .discount-coupon-info::after,
+    .discount-coupon-code::before,
+    .discount-coupon-code::after {
       border-radius: 100%
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::before,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::before,
+    .discount-coupon-info::after,
+    .discount-coupon-code::before,
+    .discount-coupon-code::after {
       background-color: white
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::before,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::before,
+    .discount-coupon-info::after,
+    .discount-coupon-code::before,
+    .discount-coupon-code::after {
       position: absolute
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::before,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::before,
+    .discount-coupon-info::after,
+    .discount-coupon-code::before,
+    .discount-coupon-code::after {
       left: 0
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-code::before {
+    .discount-coupon-info::before,
+    .discount-coupon-code::before {
       top: 0
     }
 
-    .dl-copy-coupon-h-v2-info::before,
-    .dl-copy-coupon-h-v2-code::before {
+    .discount-coupon-info::before,
+    .discount-coupon-code::before {
       transform: translate(-50%, -50%)
     }
 
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::after,
+    .discount-coupon-code::after {
       bottom: 0
     }
 
-    .dl-copy-coupon-h-v2-info::after,
-    .dl-copy-coupon-h-v2-code::after {
+    .discount-coupon-info::after,
+    .discount-coupon-code::after {
       transform: translate(-50%, 50%)
     }
 
-    .dl-copy-coupon-h-v2-info-title {
+    .discount-coupon-info-title {
       font-size: 24px
     }
 
-    .dl-copy-coupon-h-v2-info-title {
+    .discount-coupon-info-title {
       font-style: normal
     }
 
-    .dl-copy-coupon-h-v2-info-title {
+    .discount-coupon-info-title {
       font-weight: 500
     }
 
-    .dl-copy-coupon-h-v2-info-title {
+    .discount-coupon-info-title {
       line-height: normal
     }
 
-    .dl-copy-coupon-h-v2-info-title {
+    .discount-coupon-info-title {
       white-space: nowrap
     }
 
-    .dl-copy-coupon-h-v2-info-desc {
+    .discount-coupon-info-desc {
       font-size: 16px
     }
 
-    .dl-copy-coupon-h-v2-info-desc {
+    .discount-coupon-info-desc {
       font-style: normal
     }
 
-    .dl-copy-coupon-h-v2-info-desc {
+    .discount-coupon-info-desc {
       font-weight: 400
     }
 
-    .dl-copy-coupon-h-v2-info-desc {
+    .discount-coupon-info-desc {
       line-height: 150%
     }
 
-    .dl-copy-coupon-h-v2-info-desc {
+    .discount-coupon-info-desc {
       white-space: nowrap
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       display: flex
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       flex-grow: 1
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       position: relative
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       align-items: center
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       padding: 0 24px
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       background-color: #eaeee5
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       justify-content: space-between
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       gap: 8px
     }
 
-    .dl-copy-coupon-h-v2-code {
+    .discount-coupon-code {
       border-radius: 4px
     }
 
-    .dl-copy-coupon-h-v2-code-btn-after {
+    .discount-coupon-code-btn-after {
       display: none
     }
 
-    .dl-copy-coupon-h-v2-code-btn.dl-copied .dl-copy-coupon-h-v2-code-btn-after {
+    .discount-coupon-code-btn.dl-copied .discount-coupon-code-btn-after {
       display: block
     }
 
-    .dl-copy-coupon-h-v2-code-btn.dl-copied .dl-copy-coupon-h-v2-code-btn-before {
+    .discount-coupon-code-btn.dl-copied .discount-coupon-code-btn-before {
       display: none
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       border-radius: 50px
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       border: 2px solid #315800
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       color: #315800
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       display: flex
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       align-items: center
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       justify-content: center
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       padding: 0 16px
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       height: 40px
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       background: transparent
     }
 
-    .dl-copy-coupon-h-v2-code-btn {
+    .discount-coupon-code-btn {
       cursor: pointer
     }
 
-    .dl-copy-coupon-h-v2-code-btn span {
+    .discount-coupon-code-btn span {
       font-size: 16px
     }
 
-    .dl-copy-coupon-h-v2-code-btn span {
+    .discount-coupon-code-btn span {
       font-style: normal
     }
 
-    .dl-copy-coupon-h-v2-code-btn span {
+    .discount-coupon-code-btn span {
       font-weight: 400
     }
 
-    .dl-copy-coupon-h-v2-code-btn span {
+    .discount-coupon-code-btn span {
       line-height: 140%
     }
 
-    .dl-copy-coupon-h-v2-code-text {
+    .discount-coupon-code-text {
       font-size: 16px
     }
 
-    .dl-copy-coupon-h-v2-code-text {
+    .discount-coupon-code-text {
       font-style: normal
     }
 
-    .dl-copy-coupon-h-v2-code-text {
+    .discount-coupon-code-text {
       font-weight: 400
     }
 
-    .dl-copy-coupon-h-v2-code-text {
+    .discount-coupon-code-text {
       color: #315800
     }
 
     @media screen and (min-width: 991px) and (max-width: 1440px) {
-        .dl-copy-coupon-h-v2 {
+        .discount-coupon {
             height: 6.11vw;
         }
     }
 
     @media screen and (max-width: 990px) {
-      .dl-copy-coupon-h-v2 {
+      .discount-coupon {
         height: 17.0667vw
       }
 
-      .dl-copy-coupon-h-v2-info {
+      .discount-coupon-info {
         padding: 0 4.2667vw 0 4.5333vw
       }
 
-      .dl-copy-coupon-h-v2-info {
+      .discount-coupon-info {
         border-right: 0.2667vw white dashed
       }
 
-      .dl-copy-coupon-h-v2-info {
+      .discount-coupon-info {
         min-width: 160px
       }
 
-      .dl-copy-coupon-h-v2-info::before,
-      .dl-copy-coupon-h-v2-info::after,
-      .dl-copy-coupon-h-v2-code::before,
-      .dl-copy-coupon-h-v2-code::after {
+      .discount-coupon-info::before,
+      .discount-coupon-info::after,
+      .discount-coupon-code::before,
+      .discount-coupon-code::after {
         width: 5.8667vw
       }
 
-      .dl-copy-coupon-h-v2-info::before,
-      .dl-copy-coupon-h-v2-info::after,
-      .dl-copy-coupon-h-v2-code::before,
-      .dl-copy-coupon-h-v2-code::after {
+      .discount-coupon-info::before,
+      .discount-coupon-info::after,
+      .discount-coupon-code::before,
+      .discount-coupon-code::after {
         height: 5.8667vw
       }
 
-      .dl-copy-coupon-h-v2-info-title {
+      .discount-coupon-info-title {
         font-size: 5.3333vw
       }
 
-      .dl-copy-coupon-h-v2-info-desc {
+      .discount-coupon-info-desc {
         font-size: 3.2vw
       }
 
-      .dl-copy-coupon-h-v2-code {
+      .discount-coupon-code {
         padding: 0 3.2vw
       }
 
-      .dl-copy-coupon-h-v2-code {
+      .discount-coupon-code {
         gap: 2.1333vw
       }
 
-      .dl-copy-coupon-h-v2-code {
+      .discount-coupon-code {
         border-radius: 1.0667vw
       }
 
-      .dl-copy-coupon-h-v2-code-btn {
+      .discount-coupon-code-btn {
         border-radius: 13.3333vw
       }
 
-      .dl-copy-coupon-h-v2-code-btn {
+      .discount-coupon-code-btn {
         border: 0.4vw solid #315800
       }
 
-      .dl-copy-coupon-h-v2-code-btn {
+      .discount-coupon-code-btn {
         padding: 0 4.8vw
       }
 
-      .dl-copy-coupon-h-v2-code-btn {
+      .discount-coupon-code-btn {
         height: 8.5333vw
       }
 
-      .dl-copy-coupon-h-v2-code-btn span {
+      .discount-coupon-code-btn span {
         font-size: 3.2vw
       }
 
-      .dl-copy-coupon-h-v2-code-text {
+      .discount-coupon-code-text {
         font-size: 3.2vw
       }
     }
@@ -441,7 +441,7 @@
         constructor() {
           super()
           // 如果变体ID为空字符串或未定义，则视为未填写
-          const variantIdValue = this.dataset.dlVariantId
+          const variantIdValue = this.dataset.variantId
           this.variantId = variantIdValue && variantIdValue.trim() !== '' ? variantIdValue : null
           this.content = null
           this.copyBtn = null
@@ -454,15 +454,15 @@
           if (this.initialized) return
 
           // 确保 DOM 已经连接后再初始化
-          this.content = this.querySelector('.dl-copy-coupon-h-v2-content')
+          this.content = this.querySelector('.discount-coupon-content')
           this.copyBtn = this.querySelector('[data-copy-coupon-btn]')
-          this.discountCode = this.content?.dataset.dlCode || ''
+          this.discountCode = this.content?.dataset.code || ''
 
           if (this.content && this.copyBtn) {
             this.initialized = true
             this.init()
           } else {
-            console.warn('dl-copy-coupon-h-v2: Missing required elements', {
+            console.warn('discount-coupon: Missing required elements', {
               content: !!this.content,
               copyBtn: !!this.copyBtn
             })
@@ -548,7 +548,7 @@
 
         setupCopyButton() {
           if (!this.copyBtn) {
-            console.warn('dl-copy-coupon-h-v2: Copy button not found')
+            console.warn('discount-coupon: Copy button not found')
             return
           }
 
@@ -561,12 +561,12 @@
 
         async copyToClipboard() {
           if (!this.discountCode) {
-            console.warn('dl-copy-coupon-h-v2: No discount code to copy')
+            console.warn('discount-coupon: No discount code to copy')
             return
           }
 
           if (!this.copyBtn) {
-            console.warn('dl-copy-coupon-h-v2: Copy button not found')
+            console.warn('discount-coupon: Copy button not found')
             return
           }
 
@@ -604,8 +604,8 @@
 
       // 确保 DOM 准备好后再定义自定义元素
       function defineCopyCoupon() {
-        if (!customElements.get('dl-copy-coupon-h-v2')) {
-          customElements.define('dl-copy-coupon-h-v2', CopyCoupon)
+        if (!customElements.get('discount-coupon')) {
+          customElements.define('discount-coupon', CopyCoupon)
         }
       }
 

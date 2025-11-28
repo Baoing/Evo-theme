@@ -251,7 +251,7 @@
               {% when 'variant-selectors' %}
                 {% render 'product-variant-options' product: product, uniq_id: product_form_id, block: block %}
               {% when 'discount-coupon' %}
-                {% render 'dl-copy-coupon-h-v2',
+                {% render 'discount-coupon',
                   variant_id: block.settings.variant_id,
                   discount_type: block.settings.discount_type,
                   discount_value: block.settings.discount_value,
