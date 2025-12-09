@@ -14423,8 +14423,7 @@ body .shopify-email-marketing-confirmation__container {
   justify-content: center;
   align-items: center;
   padding: 1em 0.5em;
-  background: var(--COLOR-NAV-TEXT);
-  color: var(--COLOR-NAV);
+  color: var(--COLOR-NAV-TEXT);
 }
 .header__logo__text span {
   max-width: calc(50vw - 1em);
