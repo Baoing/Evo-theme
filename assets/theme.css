@@ -23093,7 +23093,7 @@ input[type=submit].shopify-challenge__button {
   background-color: var(--text-dark);
 }
 .password__wrapper .password__footer__inner {
-  color: #FFF;
+  color: #333;
 }
 .password__wrapper a {
   color: inherit;
